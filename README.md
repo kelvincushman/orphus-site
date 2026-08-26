@@ -25,6 +25,7 @@ ground → `#000`).
 | `/` | Landing: thesis, the context-window contract, the 32% number, tier-1 quickstart, docs index, requirements |
 | `/docs` | Docs home — `docs/README.md` rendered, sidebar built from its own four groups |
 | `/docs/<page>` | 23 documentation pages mirrored from the repo, links rewritten, edit-on-GitHub per page |
+| `/skills` | Every skill that ships in the repo — names and descriptions from their `SKILL.md` frontmatter |
 | `/install` | What the install script does, verified: platform detection, checksum verification, `--ref` pinning |
 | `/changelog` | `RELEASE_NOTES.md`, rendered from the repo |
 | `/security` | `SECURITY.md`, rendered from the repo |
@@ -37,12 +38,16 @@ ground → `#000`).
 ## The repo is the source of truth
 
 Nothing under `src/content/repo/`, `src/content/docs/`, `src/content/docs-home.md`,
-or `src/data/docs-index.json` is hand-edited. It all mirrors `kelvincushman/orphus` —
-refresh and commit with:
+or `src/data/` is hand-edited. It all mirrors `kelvincushman/orphus` — refresh and
+commit with:
 
 ```bash
-npm run sync   # legals/changelog/metadata + the full docs mirror
+npm run sync   # legals/changelog/metadata + the docs mirror + the skills listing
 ```
+
+The skills listing (`scripts/sync-skills.mjs`) scans the five package `skills/`
+directories and `.agents/skills/` for `SKILL.md` files and takes each skill's name and
+description straight from its frontmatter.
 
 The docs mirror (`scripts/sync-docs.mjs`) ingests exactly the pages `docs/README.md`
 links to — the repo curates its own index and the site obeys it. Relative links are

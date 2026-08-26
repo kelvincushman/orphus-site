@@ -1,0 +1,101 @@
+---
+import Base from '../layouts/Base.astro';
+import data from '../data/skills.json';
+
+const REPO = 'https://github.com/kelvincushman/orphus';
+const total = data.groups.reduce((n, g) => n + g.skills.length, 0);
+---
+
+<Base
+  title="Skills — Orphus"
+  description="The skills that ship with Orphus — self-contained capability packages the agent loads on demand — with each one's name and description straight from its SKILL.md."
+>
+  <div class="wrap page">
+    <div class="section-head">
+      <span class="label"><span class="comment">// skills</span></span>
+      <span class="label hint">{total} skills, names and descriptions from their SKILL.md files</span>
+    </div>
+    <div class="prose intro">
+      <h1>Skills</h1>
+      <p class="lead">
+        Skills are self-contained capability packages the agent loads on demand — specialized
+        workflows, setup instructions, helper scripts, and reference documentation. Orphus
+        implements the <a href="https://agentskills.io/specification">Agent Skills standard</a>;
+        the full system reference is
+        in <a href={`${REPO}/blob/main/packages/coding-agent/docs/skills.md`}>skills.md</a>.
+      </p>
+      <p class="secnote mono">
+        Skills can instruct the model to perform any action and may include executable code the
+        model invokes. Review skill content before use.
+      </p>
+    </div>
+
+    {
+      data.groups.map((group) => (
+        <section class="skillgroup">
+          <h2 class="display gh2">{group.group}</h2>
+          <p class="gnote">{group.note}</p>
+          <div class="tablewrap">
+            <table>
+              <tbody>
+                {group.skills.map((skill) => (
+                  <tr>
+                    <td class="key">
+                      <a href={skill.url}>{skill.name}</a>
+                      <span class="pkg">{skill.pkg}</span>
+                    </td>
+                    <td>{skill.description}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      ))
+    }
+
+    <section class="skillgroup prose">
+      <h2 class="display gh2">Bring your own</h2>
+      <p>
+        <code>orphus install &lt;git-url&gt;</code> consumes community skill packs
+        — <a href="https://github.com/mattpocock/skills">mattpocock/skills</a> for engineering
+        workflow, <a href="https://github.com/mvanhorn/cli-printing-press">cli-printing-press</a> to
+        mint agent-native CLIs from any API. And Orphus can create skills: ask it to build one for
+        your use case.
+      </p>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .page { padding: 48px 0 80px; }
+  .intro h1 {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(34px, 5vw, 52px);
+    letter-spacing: -0.035em;
+    margin: 0 0 14px;
+  }
+  .secnote {
+    font-size: 12.5px;
+    color: var(--grey);
+    border: 1px solid var(--line);
+    border-left: 2px solid var(--green-dim);
+    border-radius: 6px;
+    padding: 10px 14px;
+    max-width: 68ch;
+  }
+  .skillgroup { margin-top: 48px; }
+  .gh2 { font-size: 26px; margin-bottom: 6px; }
+  .gnote { color: var(--grey); font-size: 14.5px; margin: 0 0 18px; max-width: 70ch; }
+  td.key { white-space: normal; min-width: 170px; }
+  td.key a { color: var(--green); }
+  td.key a:hover { color: var(--green-dim); }
+  .pkg {
+    display: block;
+    font-size: 11px;
+    color: var(--grey);
+    letter-spacing: 0.04em;
+    margin-top: 3px;
+  }
+</style>

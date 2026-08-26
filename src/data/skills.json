@@ -1,0 +1,201 @@
+{
+  "ref": "main",
+  "groups": [
+    {
+      "group": "In the box",
+      "note": "Loaded automatically with the packages that carry them.",
+      "skills": [
+        {
+          "name": "roundtable",
+          "description": "Patterns for multi-agent group discussion via roundtable rooms without paying full-transcript context costs.",
+          "version": null,
+          "pkg": "@orphus/roundtable",
+          "path": "packages/roundtable/skills/roundtable/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/packages/roundtable/skills/roundtable/SKILL.md"
+        },
+        {
+          "name": "fleet-orchestration",
+          "description": "The orchestration protocol for running a fleet blueprint — routing work to teams, deliberation convergence, dispatch verification, retry ladders, and when to gate on the human. Load this when a /fleet run prompt tells you to.",
+          "version": null,
+          "pkg": "@orphus/fleet",
+          "path": "packages/fleet/skills/fleet-orchestration/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/packages/fleet/skills/fleet-orchestration/SKILL.md"
+        },
+        {
+          "name": "kie-ai-media",
+          "description": "Generate images, video, and audio through the Kie.ai unified API — async createTask/poll pattern, model selection from the market, and result handling for media-team fleet members.",
+          "version": null,
+          "pkg": "@orphus/fleet",
+          "path": "packages/fleet/skills/kie-ai-media/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/packages/fleet/skills/kie-ai-media/SKILL.md"
+        },
+        {
+          "name": "intercom",
+          "description": "Streamline session-to-session coordination with the intercom extension. Send messages, delegate tasks, and coordinate work across multiple atomic sessions on the same machine. Use for planner-worker workflows, cross-session context sharing, and real-time collaboration between sessions.",
+          "version": null,
+          "pkg": "@orphus/intercom",
+          "path": "packages/intercom/skills/intercom/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/packages/intercom/skills/intercom/SKILL.md"
+        },
+        {
+          "name": "liteparse",
+          "description": "Use this skill whenever a task involves a document file (PDF, DOCX, PPTX, XLSX, or image) and you need to read it or pull text, tables, or specific values out of it — to answer a question about its contents, look up a figure, or extract data. Provides fast, local, model-free extraction via the `lit` CLI with disciplined, low-cost search patterns.",
+          "version": null,
+          "pkg": "@orphus/subagents",
+          "path": "packages/subagents/skills/liteparse/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/packages/subagents/skills/liteparse/SKILL.md"
+        },
+        {
+          "name": "minting-clis",
+          "description": "Use when a task needs an external API or service and no installed tool serves it well — find or mint an agent-native CLI instead of hand-rolling curl calls or adding an MCP server.",
+          "version": null,
+          "pkg": "@orphus/subagents",
+          "path": "packages/subagents/skills/minting-clis/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/packages/subagents/skills/minting-clis/SKILL.md"
+        },
+        {
+          "name": "playwright-cli",
+          "description": "Automate browser interactions, test web pages and work with Playwright tests.",
+          "version": null,
+          "pkg": "@orphus/subagents",
+          "path": "packages/subagents/skills/playwright-cli/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/packages/subagents/skills/playwright-cli/SKILL.md"
+        },
+        {
+          "name": "ponytail",
+          "description": "Forces the laziest solution that actually works — simplest, shortest, most minimal. YAGNI, stdlib before custom code, native platform features before dependencies, one line before fifty. Supports intensity levels lite/full/ultra. Use on ANY coding task: writing, adding, refactoring, fixing, reviewing, or designing code, and choosing libraries or dependencies. Also use whenever the user says \"ponytail\", \"be lazy\", \"lazy mode\", \"simplest solution\", \"minimal solution\", \"yagni\", \"do less\", or \"shortest path\", or complains about over-engineering, bloat, boilerplate, or unnecessary dependencies. Do NOT use for non-coding requests (general knowledge, prose, translation, summaries, recipes).",
+          "version": null,
+          "pkg": "@orphus/subagents",
+          "path": "packages/subagents/skills/ponytail/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/packages/subagents/skills/ponytail/SKILL.md"
+        },
+        {
+          "name": "subagent",
+          "description": "Delegate work to builtin or custom subagents with single-agent, chain, parallel, selective async, forked-context, and intercom-coordinated runs. Use for bounded specialist delegation where a single parent agent stays in control while subagents contribute locate, analyze, pattern-find, research, debug, or simplify passes.",
+          "version": null,
+          "pkg": "@orphus/subagents",
+          "path": "packages/subagents/skills/subagent/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/packages/subagents/skills/subagent/SKILL.md"
+        },
+        {
+          "name": "tdd",
+          "description": "Test-driven development with red-green-refactor loop. Use when user wants to build features or fix bugs using TDD, mentions \"red-green-refactor\", wants integration tests, or asks for test-first development.",
+          "version": null,
+          "pkg": "@orphus/subagents",
+          "path": "packages/subagents/skills/tdd/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/packages/subagents/skills/tdd/SKILL.md"
+        },
+        {
+          "name": "tmux",
+          "description": "Control tmux-compatible sessions/windows/panes for interactive CLIs: list, capture output, send keys, paste text, monitor prompts.",
+          "version": null,
+          "pkg": "@orphus/subagents",
+          "path": "packages/subagents/skills/tmux/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/packages/subagents/skills/tmux/SKILL.md"
+        },
+        {
+          "name": "create-spec",
+          "description": "Create a detailed execution plan/spec/PRD for implementing features or refactors in a codebase, designed around the program's entrypoints, the doors that carry domain intent, by leveraging existing research in the codebase.",
+          "version": null,
+          "pkg": "@orphus/workflows",
+          "path": "packages/workflows/skills/create-spec/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/packages/workflows/skills/create-spec/SKILL.md"
+        },
+        {
+          "name": "impeccable",
+          "description": "Use when the user wants to design, redesign, shape, critique, audit, polish, clarify, distill, harden, optimize, adapt, animate, colorize, extract, or otherwise improve a frontend interface. Covers websites, landing pages, dashboards, product UI, app shells, components, forms, settings, onboarding, and empty states. Handles UX review, visual hierarchy, information architecture, cognitive load, accessibility, performance, responsive behavior, theming, anti-patterns, typography, fonts, spacing, layout, alignment, color, motion, micro-interactions, UX copy, error states, edge cases, i18n, and reusable design systems or tokens. Also use for bland designs that need to become bolder or more delightful, loud designs that should become quieter, live browser iteration on UI elements, or ambitious visual effects that should feel technically extraordinary. Not for backend-only or non-UI tasks.",
+          "version": "4.0.3",
+          "pkg": "@orphus/workflows",
+          "path": "packages/workflows/skills/impeccable/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/packages/workflows/skills/impeccable/SKILL.md"
+        },
+        {
+          "name": "prompt-engineer",
+          "description": "Create, improve, optimize, evaluate, or troubleshoot prompts for GPT-5.6, Claude Opus 5, and Claude Fable 5.",
+          "version": null,
+          "pkg": "@orphus/workflows",
+          "path": "packages/workflows/skills/prompt-engineer/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/packages/workflows/skills/prompt-engineer/SKILL.md"
+        },
+        {
+          "name": "research-codebase",
+          "description": "Document codebase as-is with research directory for historical context.",
+          "version": null,
+          "pkg": "@orphus/workflows",
+          "path": "packages/workflows/skills/research-codebase/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/packages/workflows/skills/research-codebase/SKILL.md"
+        },
+        {
+          "name": "skill-creator",
+          "description": "Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, edit, or optimize an existing skill, run evals to test a skill, benchmark skill performance with variance analysis, or optimize a skill's description for better triggering accuracy.",
+          "version": null,
+          "pkg": "@orphus/workflows",
+          "path": "packages/workflows/skills/skill-creator/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/packages/workflows/skills/skill-creator/SKILL.md"
+        }
+      ]
+    },
+    {
+      "group": "For working on the repo",
+      "note": "Loaded from .agents/skills/ when an agent works on the Orphus repository itself.",
+      "skills": [
+        {
+          "name": "bun",
+          "description": "Use when building, testing, and deploying JavaScript/TypeScript applications. Reach for Bun when you need to run scripts, manage dependencies, bundle code, or test applications with a single unified tool.",
+          "version": null,
+          "pkg": "repo",
+          "path": ".agents/skills/bun/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/.agents/skills/bun/SKILL.md"
+        },
+        {
+          "name": "gh-commit",
+          "description": "Create well-formatted commits with conventional commit format.",
+          "version": null,
+          "pkg": "repo",
+          "path": ".agents/skills/gh-commit/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/.agents/skills/gh-commit/SKILL.md"
+        },
+        {
+          "name": "gh-create-pr",
+          "description": "Commit unstaged changes, push changes, submit a pull request.",
+          "version": null,
+          "pkg": "repo",
+          "path": ".agents/skills/gh-create-pr/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/.agents/skills/gh-create-pr/SKILL.md"
+        },
+        {
+          "name": "gh-stack",
+          "description": "Manage stacked branches and pull requests with the gh-stack GitHub CLI extension. Use when the user wants to create, push, rebase, sync, navigate, or view stacks of dependent PRs. Triggers on tasks involving stacked diffs, dependent pull requests, branch chains, or incremental code review workflows.",
+          "version": null,
+          "pkg": "repo",
+          "path": ".agents/skills/gh-stack/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/.agents/skills/gh-stack/SKILL.md"
+        },
+        {
+          "name": "prek",
+          "description": "Use when setting up or running hooks with prek in any repository. prek is a Rust drop-in alternative to pre-commit for running Git hooks that check, format, lint, and validate code and repository files. Prefer it when speed, workspace mode, built-in hooks, shared toolchains, or native TOML configuration matter.",
+          "version": null,
+          "pkg": "repo",
+          "path": ".agents/skills/prek/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/.agents/skills/prek/SKILL.md"
+        },
+        {
+          "name": "typescript-advanced-types",
+          "description": "Master TypeScript's advanced type system including generics, conditional types, mapped types, template literals, and utility types for building type-safe applications. Use when implementing complex type logic, creating reusable type utilities, or ensuring compile-time type safety in TypeScript projects.",
+          "version": null,
+          "pkg": "repo",
+          "path": ".agents/skills/typescript-advanced-types/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/.agents/skills/typescript-advanced-types/SKILL.md"
+        },
+        {
+          "name": "typescript-expert",
+          "description": "TypeScript and JavaScript expert with deep knowledge of type-level programming, performance optimization, monorepo management, migration strategies, and modern tooling.",
+          "version": null,
+          "pkg": "repo",
+          "path": ".agents/skills/typescript-expert/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/.agents/skills/typescript-expert/SKILL.md"
+        }
+      ]
+    }
+  ]
+}
