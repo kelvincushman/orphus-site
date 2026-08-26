@@ -31,27 +31,41 @@ const total = data.groups.reduce((n, g) => n + g.skills.length, 0);
     </div>
 
     {
-      data.groups.map((group) => (
-        <section class="skillgroup">
-          <h2 class="display gh2">{group.group}</h2>
-          <p class="gnote">{group.note}</p>
-          <div class="tablewrap">
-            <table>
-              <tbody>
-                {group.skills.map((skill) => (
-                  <tr>
-                    <td class="key">
-                      <a href={skill.url}>{skill.name}</a>
-                      <span class="pkg">{skill.pkg}</span>
-                    </td>
-                    <td>{skill.description}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-      ))
+      data.groups.map((group) => {
+        const pkgs = [...new Set(group.skills.map((s) => s.pkg))];
+        return (
+          <section class="skillgroup">
+            <h2 class="display gh2">{group.group}</h2>
+            <p class="gnote">{group.note}</p>
+            {pkgs.map((pkg) => (
+              <div class="pkgblock">
+                {pkg !== 'repo' && (
+                  <p class="pkghead mono">
+                    {pkg} <span class="pkgcount">· {group.skills.filter((s) => s.pkg === pkg).length}</span>
+                  </p>
+                )}
+                <div class="tablewrap">
+                  <table>
+                    <tbody>
+                      {group.skills
+                        .filter((s) => s.pkg === pkg)
+                        .map((skill) => (
+                          <tr>
+                            <td class="key">
+                              <a href={skill.url}>{skill.name}</a>
+                              <span class="invoke"><span class="prompt">$</span> /skill:{skill.name}</span>
+                            </td>
+                            <td>{skill.description}</td>
+                          </tr>
+                        ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ))}
+          </section>
+        );
+      })
     }
 
     <section class="skillgroup prose">
@@ -88,14 +102,22 @@ const total = data.groups.reduce((n, g) => n + g.skills.length, 0);
   .skillgroup { margin-top: 48px; }
   .gh2 { font-size: 26px; margin-bottom: 6px; }
   .gnote { color: var(--grey); font-size: 14.5px; margin: 0 0 18px; max-width: 70ch; }
-  td.key { white-space: normal; min-width: 170px; }
-  td.key a { color: var(--green); }
-  td.key a:hover { color: var(--green-dim); }
-  .pkg {
+  .pkgblock { margin-bottom: 26px; }
+  .pkghead {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--green-dim);
+    margin: 0 0 8px;
+  }
+  .pkgcount { color: var(--grey); letter-spacing: 0; }
+  td.key { white-space: normal; min-width: 200px; }
+  td.key a { color: var(--white); font-weight: 600; font-family: var(--font-body); font-size: 14.5px; }
+  td.key a:hover { color: var(--green); }
+  .invoke {
     display: block;
-    font-size: 11px;
+    font-size: 12px;
     color: var(--grey);
-    letter-spacing: 0.04em;
     margin-top: 3px;
+    white-space: nowrap;
   }
 </style>
