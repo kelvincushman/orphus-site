@@ -1,0 +1,5 @@
+# Cloudflare Pages redirects.
+# D5 from the site spec: `curl -fsSL orphus.dev/install.sh | sh` serves the
+# repo's own installer — the repo stays the source of truth for the script.
+/install.sh https://raw.githubusercontent.com/kelvincushman/orphus/main/install.sh 302
+/github https://github.com/kelvincushman/orphus 302

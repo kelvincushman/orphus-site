@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import { Content as SecurityPolicy } from '../content/repo/security.md';
+---
+
+<Base
+  title="Security policy — Orphus"
+  description="How to report a vulnerability in Orphus privately, which versions receive fixes, and what is in scope. Rendered from the repo's SECURITY.md."
+>
+  <div class="wrap page">
+    <div class="section-head">
+      <span class="label"><span class="comment">// security</span></span>
+      <span class="label hint">rendered from SECURITY.md</span>
+    </div>
+    <div class="prose">
+      <SecurityPolicy />
+      <p>
+        <a href="https://github.com/kelvincushman/orphus/blob/main/SECURITY.md"
+          >Edit this page on GitHub →</a
+        >
+      </p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .page { padding: 48px 0 80px; }
+</style>

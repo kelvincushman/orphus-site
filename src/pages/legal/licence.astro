@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+import license from '../../content/repo/license.txt?raw';
+---
+
+<Base
+  title="Licence — Orphus"
+  description="Orphus is MIT licensed — free to use, modify and distribute, keep the notice. The licence text is reproduced verbatim from the repository."
+>
+  <div class="wrap page">
+    <div class="section-head">
+      <span class="label"><span class="comment">// legal/licence</span></span>
+      <span class="label hint">reproduced verbatim from LICENSE</span>
+    </div>
+    <div class="prose">
+      <h1>MIT Licence</h1>
+      <p class="lead">
+        Free to use, modify and distribute — keep the notice. The text below is the
+        repository's <code>LICENSE</code> file, reproduced exactly.
+      </p>
+      <pre class="licence">{license}</pre>
+      <p>
+        <a href="https://github.com/kelvincushman/orphus/blob/main/LICENSE">View on GitHub →</a>
+      </p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .page { padding: 48px 0 80px; }
+  .licence { white-space: pre-wrap; font-size: 13px; }
+</style>

@@ -1,0 +1,114 @@
+---
+import Base from '../layouts/Base.astro';
+
+const REPO = 'https://github.com/kelvincushman/orphus';
+---
+
+<Base
+  title="Install — Orphus"
+  description="Install Orphus with one command. The installer detects your platform, downloads the newest release archive, verifies its SHA-256 checksum, and links orphus into ~/.local/bin."
+>
+  <div class="wrap page">
+    <div class="section-head">
+      <span class="label"><span class="comment">// install</span></span>
+      <span class="label hint">the script, verified — what it actually does</span>
+    </div>
+    <div class="prose">
+      <h1>Install Orphus</h1>
+      <p class="lead">
+        No toolchain, no clone. One command installs the release binary:
+      </p>
+
+      <div class="cmd">
+        <span class="line"><span class="prompt">$</span> curl -fsSL orphus.dev/install.sh | sh</span>
+        <button class="copy" data-copy="curl -fsSL orphus.dev/install.sh | sh">copy</button>
+      </div>
+      <p class="dim mono redirect-note">
+        orphus.dev/install.sh redirects to the script in the repository
+        — <a href={`${REPO}/blob/main/install.sh`}>read the source before you pipe it to sh</a>.
+      </p>
+
+      <h2>What the script does</h2>
+      <ol>
+        <li>Detects your platform — <strong>macOS arm64</strong> (Apple silicon)
+          or <strong>Linux x64 glibc</strong> today. It refuses politely on unsupported platforms
+          rather than guessing.</li>
+        <li>Downloads the newest release archive
+          from <a href={`${REPO}/releases`}>GitHub Releases</a>.</li>
+        <li><strong>Verifies the archive against the release's <code>SHA256SUMS</code></strong>
+          before unpacking anything.</li>
+        <li>Installs to <code>~/.local/share/orphus</code> and links <code>orphus</code>
+          into <code>~/.local/bin</code>.</li>
+      </ol>
+
+      <h2>Staying current</h2>
+      <p>
+        From then on, <code>orphus update</code> upgrades in place: it checks the repository's
+        releases, re-runs the installer, and flips the <code>current</code> pointer — the previous
+        version stays on disk for rollback. A stable install tracks stable releases only, so it is
+        never dragged onto a beta.
+      </p>
+
+      <h2>Options</h2>
+      <div class="tablewrap opttable">
+        <table>
+          <tbody>
+            <tr>
+              <td class="key">--ref v2.1.0</td>
+              <td>Pin an exact release tag instead of the newest.</td>
+            </tr>
+            <tr>
+              <td class="key">ORPHUS_INSTALL_DIR</td>
+              <td>Installation root (default <code>~/.local/share/orphus</code>).</td>
+            </tr>
+            <tr>
+              <td class="key">ORPHUS_BIN_DIR</td>
+              <td>Directory for the <code>orphus</code> link (default <code>~/.local/bin</code>).</td>
+            </tr>
+            <tr>
+              <td class="key">install.sh --help</td>
+              <td>Full usage, including token env vars for API rate limits.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>After installing</h2>
+      <pre><span class="prompt">$</span> orphus                       <span class="dim"># start a session; /login sets credentials</span>
+<span class="prompt">$</span> orphus inspect runtime --json <span class="dim"># what this session actually resolved to</span></pre>
+      <p>
+        Add an API key for whichever provider you use, or log in from inside a session
+        with <code>/login</code>. Building from a clone instead — including the Rust toolchain the
+        native bindings need — is covered
+        in <a href={`${REPO}/blob/main/docs/getting-started.md`}>getting started</a>.
+      </p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .page { padding: 48px 0 80px; }
+  .redirect-note { font-size: 12.5px; margin-top: 8px; }
+  .redirect-note a { color: var(--grey); text-decoration: underline; }
+  .redirect-note a:hover { color: var(--green); }
+  .opttable { max-width: 640px; }
+</style>
+
+<script>
+  document.addEventListener('click', async (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('.copy');
+    if (!btn?.dataset.copy) return;
+    try {
+      await navigator.clipboard.writeText(btn.dataset.copy);
+      const prev = btn.textContent;
+      btn.textContent = 'copied';
+      btn.classList.add('done');
+      setTimeout(() => {
+        btn.textContent = prev;
+        btn.classList.remove('done');
+      }, 1600);
+    } catch {
+      /* clipboard unavailable */
+    }
+  });
+</script>

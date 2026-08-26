@@ -1,0 +1,26 @@
+---
+// The brand mark — the ASCII banner from the top of the repo's README,
+// set in terminal green. Rendered as an image for assistive tech.
+interface Props {
+  size?: number; // font-size in px
+  glow?: boolean;
+  class?: string;
+}
+const { size = 12, glow = true, class: cls = '' } = Astro.props;
+---
+
+<pre
+  class:list={['ascii', cls, { noglow: !glow }]}
+  style={`font-size:${size}px`}
+  role="img"
+  aria-label="ORPHUS — ASCII block-letter wordmark">
+ ██████╗ ██████╗ ██████╗ ██╗  ██╗██╗   ██╗███████╗
+██╔═══██╗██╔══██╗██╔══██╗██║  ██║██║   ██║██╔════╝
+██║   ██║██████╔╝██████╔╝███████║██║   ██║███████╗
+██║   ██║██╔══██╗██╔═══╝ ██╔══██║██║   ██║╚════██║
+╚██████╔╝██║  ██║██║     ██║  ██║╚██████╔╝███████║
+ ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚══════╝</pre>
+
+<style>
+  .noglow { text-shadow: none; }
+</style>

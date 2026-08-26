@@ -1,0 +1,44 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base
+  title="Privacy — Orphus"
+  description="orphus.dev is a static site: no accounts, no cookies, no analytics, no third-party requests. This page is the entire privacy notice."
+>
+  <div class="wrap page">
+    <div class="section-head">
+      <span class="label"><span class="comment">// legal/privacy</span></span>
+      <span class="label hint">the whole notice — it is short because there is nothing to disclose</span>
+    </div>
+    <div class="prose">
+      <h1>Privacy notice</h1>
+      <p>
+        orphus.dev is a static website. It has no accounts, sets no cookies, runs no analytics, and
+        loads nothing from third parties — fonts are served from this domain. We do not collect,
+        store, or process any personal data, so there is nothing to consent to and no banner to
+        dismiss.
+      </p>
+      <p>
+        The site is hosted on Cloudflare Pages. Like any web host, Cloudflare's infrastructure
+        processes standard connection data (IP address, user agent) to serve requests and protect
+        against abuse — see <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare's privacy policy</a> for how
+        they handle it. We do not receive or retain that data.
+      </p>
+      <p>
+        Outbound links — GitHub for the source code and documentation, kelvinlee.io in the footer —
+        take you to sites with their own privacy practices.
+      </p>
+      <p>
+        Questions about this notice or the
+        project: <a href="https://github.com/kelvincushman/orphus/issues">open an issue on GitHub</a>.
+      </p>
+      <p class="dim mono updated">Last updated 26 August 2026 · applies to orphus.dev only</p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .page { padding: 48px 0 80px; }
+  .updated { font-size: 12px; margin-top: 40px; }
+</style>

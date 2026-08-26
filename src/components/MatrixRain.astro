@@ -1,0 +1,67 @@
+---
+// Ambient matrix rain behind the hero only. Deliberately dim (the spec caps it
+// at ~12% opacity), disabled under prefers-reduced-motion, paused when the tab
+// is hidden. An easter egg, not wallpaper.
+---
+
+<canvas id="rain" aria-hidden="true"></canvas>
+
+<style>
+  #rain {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.12;
+    pointer-events: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #rain { display: none; }
+  }
+</style>
+
+<script>
+  const canvas = document.getElementById('rain') as HTMLCanvasElement | null;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (canvas && !reduced) {
+    const ctx = canvas.getContext('2d')!;
+    const GLYPHS = '0123456789ABCDEFｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿ┌┐└┘─│├┤═║';
+    const SIZE = 14;
+    let cols = 0;
+    let drops: number[] = [];
+    let raf = 0;
+    let last = 0;
+
+    const resize = () => {
+      const rect = canvas.parentElement!.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+      cols = Math.floor(rect.width / SIZE);
+      drops = Array.from({ length: cols }, () => Math.floor(Math.random() * -40));
+    };
+
+    const draw = (t: number) => {
+      raf = requestAnimationFrame(draw);
+      if (t - last < 90) return; // slow rain — ~11fps is the vibe
+      last = t;
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.12)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#00ff41';
+      ctx.font = `${SIZE}px "JetBrains Mono", monospace`;
+      for (let i = 0; i < cols; i++) {
+        const ch = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+        ctx.fillText(ch, i * SIZE, drops[i] * SIZE);
+        if (drops[i] * SIZE > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      }
+    };
+
+    const start = () => { if (!raf) raf = requestAnimationFrame(draw); };
+    const stop = () => { cancelAnimationFrame(raf); raf = 0; };
+
+    document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
+    window.addEventListener('resize', resize, { passive: true });
+    resize();
+    start();
+  }
+</script>

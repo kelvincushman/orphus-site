@@ -1,0 +1,511 @@
+---
+import Base from '../layouts/Base.astro';
+import MatrixRain from '../components/MatrixRain.astro';
+import AsciiLogo from '../components/AsciiLogo.astro';
+import meta from '../content/repo/meta.json';
+
+const REPO = 'https://github.com/kelvincushman/orphus';
+const DOCS = `${REPO}/blob/main/docs`;
+const CDOCS = `${REPO}/blob/main/packages/coding-agent/docs`;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareSourceCode',
+  name: 'Orphus',
+  description:
+    'An agent harness whose agents deliberate in rooms outside their context windows — bounded multi-agent discussion, budgeted digests, and a declarative role manifest.',
+  codeRepository: REPO,
+  programmingLanguage: 'TypeScript',
+  runtimePlatform: 'Node.js 22, Bun',
+  license: 'https://opensource.org/licenses/MIT',
+  author: { '@type': 'Person', name: 'Kelvin Lee', url: 'https://kelvinlee.io' },
+  url: 'https://orphus.dev',
+};
+---
+
+<Base
+  title="Orphus — agents deliberate in rooms outside their context windows"
+  description="Open-source multi-agent harness. Fleets of agents across providers argue at one table without transcript bloat: bounded digests, a local broker, and a context-window contract the runtime enforces."
+  schema={schema}
+>
+  <!-- ═══ hero ═══ -->
+  <section class="hero">
+    <MatrixRain />
+    <div class="wrap heroin">
+      <AsciiLogo size={10} class="heromark" />
+      <div class="herosplit">
+        <div class="heroleft">
+          <h1 class="display herohead">
+            Agents deliberate in rooms.<br />
+            <span class="g">Outside their context windows.</span>
+          </h1>
+          <p class="tagline">
+            “Many minds, from many makers, argue at one table — the best path leaves the room.”
+          </p>
+          <p class="sub">
+            Fleets of agents across providers deliberate in rooms outside their context windows,
+            and converge on a decision of record.
+          </p>
+          <div class="cmd herocmd">
+            <span class="line"><span class="prompt">$</span> curl -fsSL orphus.dev/install.sh | sh</span>
+            <button class="copy" data-copy="curl -fsSL orphus.dev/install.sh | sh">copy</button>
+          </div>
+          <div class="herobtns">
+            <a class="btn fill" href="/install">$ install</a>
+            <a class="btn ghost" href="#try">$ npm run demo</a>
+            <a class="btn ghost" href={REPO}>gh repo clone kelvincushman/orphus</a>
+          </div>
+        </div>
+        <div class="heroright">
+          <div class="stat">
+            <span class="statnum display">32<span class="pct">%</span></span>
+            <span class="label statlabel">of raw transcript cost</span>
+            <span class="statq">a reviewer joining <em>after</em> a 9-message design discussion catches up
+              for 32% — decisions intact verbatim, early exploration collapsed. Measured in the
+              bundled demo; CI fails if it regresses.</span>
+          </div>
+        </div>
+      </div>
+      <div class="badges mono">
+        <span>MIT</span><span>TypeScript strict</span><span>Bun | Node ≥ 22.19</span><span
+          >{meta.latestRelease}</span
+        >
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ the problem ═══ -->
+  <section class="block wrap">
+    <div class="section-head">
+      <span class="label"><span class="comment">// the problem</span></span>
+      <span class="label hint">every agent, in every other agent's prompt</span>
+    </div>
+    <p class="bigsay">
+      Multi-agent “discussion” usually means piping every agent's output into every other agent's
+      prompt. <strong>Context windows fill with other agents' reasoning, token costs grow
+      quadratically with participants, and long collaborations die of transcript bloat.</strong>
+    </p>
+  </section>
+
+  <!-- ═══ the answer ═══ -->
+  <section class="block wrap">
+    <div class="section-head">
+      <span class="label"><span class="comment">// the answer</span></span>
+      <span class="label hint">scrolls sideways on a phone</span>
+    </div>
+    <h2 class="display h2">A context-window contract.</h2>
+    <p class="intro">
+      The discussion lives in a small local broker — <strong>outside every agent's context
+      window</strong>. A room reaches an agent through three tiers, and the two that
+      arrive <em>unasked</em> are bounded by the runtime rather than by prompt discipline:
+    </p>
+
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tier</th>
+            <th>What enters context</th>
+            <th>Bound</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="key col-tint"><strong>activity ping</strong> <span class="dim">push</span></td>
+            <td><code>#design: 3 new (planner, critic)</code></td>
+            <td>one line per quiet period, coalesced</td>
+          </tr>
+          <tr>
+            <td class="key col-tint"><strong>digest</strong> <span class="dim">pull</span></td>
+            <td>newest messages verbatim → older as one-line headlines → rest collapsed to a count</td>
+            <td>fixed character budget <span class="dim">(default 2000)</span></td>
+          </tr>
+          <tr>
+            <td class="key col-tint"><strong>explicit fetch</strong> <span class="dim">pull</span></td>
+            <td>raw messages by sequence range</td>
+            <td><strong>none</strong> — full bodies; <code>limit</code> is the only guard</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="fine">
+      <code>fetch</code> is deliberately not bounded: that tier exists for the caller who genuinely
+      needs the text. It is a <em>choice</em> to spend context — which is different from context
+      arriving whether you wanted it or not.
+    </p>
+
+    <!-- numbered features -->
+    <div class="feature">
+      <span class="num" aria-hidden="true">01</span>
+      <div>
+        <h3>The room lives in a broker, not in anyone's window.</h3>
+        <p>
+          A small local socket server holds rooms, ring buffers, and read cursors. Agents reach it
+          through tool calls; it reaches them through one-line activity pings. Cursors live
+          broker-side, keyed by role name, so they <strong>survive session restarts</strong>.
+        </p>
+      </div>
+      <div class="term">
+        <div class="bar"><span>orphus broker</span><span class="ok">● local socket</span></div>
+        <div class="body">
+          <pre class="diagram">┌──────────┐   post / digest   ┌─────────────────────┐
+│ planner  │◄─────────────────►│    Orphus broker     │
+├──────────┤   (tool calls)    │    (local socket)    │
+│ critic   │◄─────────────────►│                      │
+├──────────┤  activity pings   │  rooms · ring buffer │
+│ reviewer │◄─────────────────►│  read cursors        │
+└──────────┘   (one-liners)    └─────────────────────┘</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature">
+      <span class="num" aria-hidden="true">02</span>
+      <div>
+        <h3>A hostile peer cannot inflate your context.</h3>
+        <p>
+          The digest is deterministic and model-free: budget is spent on the newest messages first,
+          rendered chronologically. A verbose — or hostile — peer <strong>cannot</strong> spend your
+          context. That guarantee is specific, and the honest scoreboard of every bound lives
+          in <a href={`${DOCS}/architecture.md`}>architecture.md</a>.
+        </p>
+      </div>
+      <div class="term">
+        <div class="bar"><span>roundtable</span><span class="ok">budget 2000</span></div>
+        <div class="body">
+          <pre><span class="prompt">$</span> roundtable digest #design
+<span class="dim">→ newest verbatim · older as headlines
+→ rest collapsed to a count
+→ deterministic, no model in the loop</span></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature">
+      <span class="num" aria-hidden="true">03</span>
+      <div>
+        <h3>Measured, not promised.</h3>
+        <p>
+          In the bundled demo, a reviewer joining after a 9-message design discussion catches up
+          for <strong>32% of the raw transcript cost</strong> — decision messages intact verbatim,
+          only early exploration collapsed. CI asserts the ratio against a 40% ceiling
+          and <strong>fails the build</strong> rather than reporting a worse number.
+        </p>
+      </div>
+      <div class="term">
+        <div class="bar"><span>ci · verify</span><span class="ok">✓ asserted</span></div>
+        <div class="body">
+          <pre><span class="prompt">$</span> npm run demo
+<span class="dim">late-joiner catch-up:</span> <span class="g">32%</span> <span class="dim">of raw transcript
+ceiling 40% — build fails past it</span></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature">
+      <span class="num" aria-hidden="true">04</span>
+      <div>
+        <h3>Declare the fleet once.</h3>
+        <p>
+          Deliberation improves when roles run on different models — distinct models disagree more
+          usefully. Rooms key everything by role name, so <strong>any model can sit behind any
+          role</strong>. The manifest doubles as the reproducibility artifact: same roles, same
+          models, same budgets — rerun the deliberation.
+        </p>
+      </div>
+      <div class="term">
+        <div class="bar"><span>orphus.roles.yaml</span><span class="ok">3 roles</span></div>
+        <div class="body">
+          <pre>roles:
+  planner:    <span class="dim">&#123; provider: anthropic &#125;</span>
+  researcher: <span class="dim">&#123; provider: openai &#125;</span>
+  critic:     <span class="dim">&#123; provider: xai &#125;</span>
+<span class="prompt">$</span> npm run roles -- --format tmux | sh</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ try it ═══ -->
+  <section class="block wrap" id="try">
+    <div class="section-head">
+      <span class="label"><span class="comment">// try it in 5 minutes</span></span>
+      <span class="label hint">tier 1 of 5 — stop at whichever you need</span>
+    </div>
+    <h2 class="display h2">No model. No API key.<br /><span class="g">No network.</span></h2>
+    <p class="intro">
+      <code>demo:loop</code> is the whole thesis in one run: four roles deliberate, a late reviewer
+      catches up on a bounded digest, the librarian exports the room losslessly, memory ingests it,
+      and a fresh session with no access to the room recalls the decision. It asserts each of those
+      properties, so it fails loudly if the loop breaks.
+    </p>
+    <div class="term tryterm">
+      <div class="bar"><span>tier 1 — run the demo</span><span class="ok">no keys required</span></div>
+      <div class="body">
+        <pre><span class="prompt">$</span> git clone https://github.com/kelvincushman/orphus.git orphus && cd orphus
+<span class="prompt">$</span> npm ci --ignore-scripts
+<span class="prompt">$</span> npm run demo        <span class="dim"># scripted 3-agent discussion + late-joining reviewer</span>
+<span class="prompt">$</span> npm run demo:loop   <span class="dim"># the full loop: room → export → memory → later recall</span>
+<span class="prompt">$</span> npm run roles       <span class="dim"># the role manifest, turned into launch commands</span></pre>
+      </div>
+    </div>
+    <button
+      class="copy blockcopy"
+      data-copy={'git clone https://github.com/kelvincushman/orphus.git orphus && cd orphus\nnpm ci --ignore-scripts\nnpm run demo'}
+      >copy tier 1</button
+    >
+  </section>
+
+  <!-- ═══ documentation ═══ -->
+  <section class="block wrap">
+    <div class="section-head">
+      <span class="label"><span class="comment">// documentation</span></span>
+      <span class="label hint">the repo curates its own index — the site obeys it</span>
+    </div>
+    <div class="docgrid">
+      <div class="doccard">
+        <span class="label">start here</span>
+        <ul>
+          <li>
+            <a href={`${DOCS}/getting-started.md`}>Getting started</a>
+            <span class="desc">Clone to working fleet, in five tiers. The first needs no model and no API key.</span>
+          </li>
+          <li>
+            <a href={`${DOCS}/troubleshooting.md`}>Troubleshooting</a>
+            <span class="desc">The three failures that look like success.</span>
+          </li>
+        </ul>
+      </div>
+      <div class="doccard">
+        <span class="label">using it</span>
+        <ul>
+          <li>
+            <a href={`${DOCS}/roundtable-tool.md`}>The roundtable tool</a>
+            <span class="desc">Every action, parameter, and default, with the reasoning.</span>
+          </li>
+          <li>
+            <a href={`${DOCS}/roles.md`}>Roles &amp; the manifest</a>
+            <span class="desc">Declaring a fleet in orphus.roles.yaml.</span>
+          </li>
+          <li>
+            <a href={`${DOCS}/memory.md`}>Memory</a>
+            <span class="desc">The durable layer: export → ingest → query, behind the librarian gate.</span>
+          </li>
+          <li>
+            <a href={`${CDOCS}/fleet.md`}>Fleets &amp; Orca</a>
+            <span class="desc">Blueprint-driven orchestration; parallel worktree fan-out.</span>
+          </li>
+        </ul>
+      </div>
+      <div class="doccard">
+        <span class="label">understanding it</span>
+        <ul>
+          <li>
+            <a href={`${DOCS}/architecture.md`}>Architecture</a>
+            <span class="desc">What runs where, and what the bound actually guarantees.</span>
+          </li>
+          <li>
+            <a href={`${REPO}/blob/main/packages/roundtable/DESIGN.md`}>Design decisions</a>
+            <span class="desc">Why each choice went the way it did — alternatives rejected included.</span>
+          </li>
+          <li>
+            <a href={`${DOCS}/rlm-security-posture.md`}>RLM security posture</a>
+            <span class="desc">The rules self-modification must obey, and which are enforced.</span>
+          </li>
+        </ul>
+      </div>
+      <div class="doccard">
+        <span class="label">working on it</span>
+        <ul>
+          <li>
+            <a href={`${REPO}/blob/main/CONTRIBUTING.md`}>Contributing</a>
+            <span class="desc">Issue coordination and pull request guidance.</span>
+          </li>
+          <li>
+            <a href={`${DOCS}/ci.md`}>CI</a>
+            <span class="desc">The gate that runs, what it covers, and what it deliberately does not.</span>
+          </li>
+          <li>
+            <a href="/security">Security policy</a>
+            <span class="desc">Reporting a vulnerability, and what is in scope.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ for developers ═══ -->
+  <section class="block wrap">
+    <div class="section-head">
+      <span class="label"><span class="comment">// for developers</span></span>
+      <span class="label hint">one-liners, for deciding fast</span>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <tbody>
+          <tr>
+            <td class="key">node ≥ 22.19</td>
+            <td>Runs the agent and every test suite.</td>
+          </tr>
+          <tr>
+            <td class="key">bun ≥ 1.3.14</td>
+            <td>Runs the demo, the role launcher, <code>scripts/*.ts</code>; compiles release binaries.</td>
+          </tr>
+          <tr>
+            <td class="key">npm only</td>
+            <td>
+              <code>package-lock.json</code> is the single lockfile, and the
+              committed <code>.npmrc</code> adds a supply-chain gate. pnpm, yarn, and <code>bun install</code>
+              bypass it — they are not merely discouraged, they are wrong here.
+            </td>
+          </tr>
+          <tr>
+            <td class="key">contributing</td>
+            <td><a href={`${REPO}/blob/main/CONTRIBUTING.md`}>CONTRIBUTING.md</a> — read <a href={`${REPO}/blob/main/AGENTS.md`}>AGENTS.md</a> first.</td>
+          </tr>
+          <tr>
+            <td class="key">security</td>
+            <td><a href="/security">Report privately</a> — never through public issues.</td>
+          </tr>
+          <tr>
+            <td class="key">issues</td>
+            <td><a href={`${REPO}/issues`}>github.com/kelvincushman/orphus/issues</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══ closing cta ═══ -->
+  <section class="cta">
+    <AsciiLogo size={26} glow={false} class="watermark" />
+    <div class="wrap ctain">
+      <h2 class="display ctahead">Many minds,<br />one table.</h2>
+      <p class="ctasub">
+        The best path leaves the room — and the room never touches a context window.
+      </p>
+      <div class="herobtns">
+        <a class="btn fill" href="/install">$ install orphus</a>
+        <a class="btn" href="#try">$ npm run demo</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+  }
+  .heroin { position: relative; padding-top: 64px; padding-bottom: 56px; }
+  .heroin :global(.heromark) { margin-bottom: 44px; }
+  .herosplit {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 56px;
+    align-items: start;
+  }
+  .herosplit > * { min-width: 0; }
+  .herohead { font-size: clamp(24px, 7.6vw, 68px); }
+  .tagline {
+    margin: 26px 0 0;
+    color: var(--white);
+    font-size: 17px;
+    font-style: italic;
+    max-width: 56ch;
+  }
+  .sub { margin: 10px 0 0; color: var(--grey); max-width: 56ch; }
+  .herocmd { margin-top: 30px; max-width: 560px; }
+  .herobtns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+
+  .stat { display: flex; flex-direction: column; text-align: right; align-items: flex-end; }
+  .statnum { font-size: clamp(96px, 10vw, 150px); line-height: 0.9; }
+  .statnum .pct { color: var(--green); font-size: 0.55em; }
+  .statlabel { margin-top: 12px; color: var(--white); }
+  .statq { margin-top: 10px; color: var(--grey); font-size: 13px; line-height: 1.55; max-width: 30ch; }
+  .statq em { color: var(--white); }
+
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 48px;
+  }
+  .badges span {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--grey);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 5px 12px;
+  }
+
+  .bigsay {
+    font-size: clamp(20px, 2.6vw, 27px);
+    line-height: 1.5;
+    color: var(--grey);
+    max-width: 60ch;
+    margin: 0;
+  }
+  .bigsay strong { color: var(--white); font-weight: 600; }
+
+  .h2 { font-size: clamp(30px, 4vw, 44px); margin-bottom: 16px; }
+  .intro { color: var(--grey); max-width: 66ch; margin: 0 0 26px; }
+  .intro strong, .intro em { color: var(--white); }
+  .fine { color: var(--grey); font-size: 14.5px; max-width: 66ch; margin: 14px 0 34px; }
+  .fine em { color: var(--white); }
+
+  .tryterm { margin-top: 6px; }
+  .blockcopy { margin-top: 12px; }
+  .diagram { font-size: 10.5px; line-height: 1.45; }
+
+  .cta {
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+    padding: 110px 0 120px;
+  }
+  .ctain { position: relative; }
+  .ctahead { font-size: clamp(52px, 8vw, 104px); }
+  .ctasub { color: var(--grey); font-size: 17px; margin: 22px 0 28px; max-width: 48ch; }
+  .cta :global(.watermark) {
+    position: absolute;
+    right: -60px;
+    bottom: -30px;
+    opacity: 0.07;
+    pointer-events: none;
+    user-select: none;
+    overflow: hidden;
+  }
+
+  @media (max-width: 960px) {
+    .herosplit { grid-template-columns: 1fr; gap: 36px; }
+    .stat { text-align: left; align-items: flex-start; }
+    .statnum { font-size: 84px; }
+    .heroin { padding-top: 44px; }
+    .heromark { margin-bottom: 32px; }
+  }
+</style>
+
+<script>
+  // copy-to-clipboard on every command — the only other JS on the page
+  document.addEventListener('click', async (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('.copy');
+    if (!btn?.dataset.copy) return;
+    try {
+      await navigator.clipboard.writeText(btn.dataset.copy);
+      const prev = btn.textContent;
+      btn.textContent = 'copied';
+      btn.classList.add('done');
+      setTimeout(() => {
+        btn.textContent = prev;
+        btn.classList.remove('done');
+      }, 1600);
+    } catch {
+      /* clipboard unavailable — leave the command selectable */
+    }
+  });
+</script>
