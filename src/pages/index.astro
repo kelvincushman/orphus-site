@@ -5,8 +5,6 @@ import AsciiLogo from '../components/AsciiLogo.astro';
 import meta from '../content/repo/meta.json';
 
 const REPO = 'https://github.com/kelvincushman/orphus';
-const DOCS = `${REPO}/blob/main/docs`;
-const CDOCS = `${REPO}/blob/main/packages/coding-agent/docs`;
 
 const schema = {
   '@context': 'https://schema.org',
@@ -167,7 +165,7 @@ const schema = {
           The digest is deterministic and model-free: budget is spent on the newest messages first,
           rendered chronologically. A verbose — or hostile — peer <strong>cannot</strong> spend your
           context. That guarantee is specific, and the honest scoreboard of every bound lives
-          in <a href={`${DOCS}/architecture.md`}>architecture.md</a>.
+          in <a href="/docs/architecture#boundaries-and-their-bounds">architecture.md</a>.
         </p>
       </div>
       <div class="term">
@@ -267,11 +265,11 @@ ceiling 40% — build fails past it</span></pre>
         <span class="label">start here</span>
         <ul>
           <li>
-            <a href={`${DOCS}/getting-started.md`}>Getting started</a>
+            <a href="/docs/getting-started">Getting started</a>
             <span class="desc">Clone to working fleet, in five tiers. The first needs no model and no API key.</span>
           </li>
           <li>
-            <a href={`${DOCS}/troubleshooting.md`}>Troubleshooting</a>
+            <a href="/docs/troubleshooting">Troubleshooting</a>
             <span class="desc">The three failures that look like success.</span>
           </li>
         </ul>
@@ -280,19 +278,19 @@ ceiling 40% — build fails past it</span></pre>
         <span class="label">using it</span>
         <ul>
           <li>
-            <a href={`${DOCS}/roundtable-tool.md`}>The roundtable tool</a>
+            <a href="/docs/roundtable-tool">The roundtable tool</a>
             <span class="desc">Every action, parameter, and default, with the reasoning.</span>
           </li>
           <li>
-            <a href={`${DOCS}/roles.md`}>Roles &amp; the manifest</a>
+            <a href="/docs/roles">Roles &amp; the manifest</a>
             <span class="desc">Declaring a fleet in orphus.roles.yaml.</span>
           </li>
           <li>
-            <a href={`${DOCS}/memory.md`}>Memory</a>
+            <a href="/docs/memory">Memory</a>
             <span class="desc">The durable layer: export → ingest → query, behind the librarian gate.</span>
           </li>
           <li>
-            <a href={`${CDOCS}/fleet.md`}>Fleets &amp; Orca</a>
+            <a href="/docs/fleet">Fleets &amp; Orca</a>
             <span class="desc">Blueprint-driven orchestration; parallel worktree fan-out.</span>
           </li>
         </ul>
@@ -301,15 +299,15 @@ ceiling 40% — build fails past it</span></pre>
         <span class="label">understanding it</span>
         <ul>
           <li>
-            <a href={`${DOCS}/architecture.md`}>Architecture</a>
+            <a href="/docs/architecture">Architecture</a>
             <span class="desc">What runs where, and what the bound actually guarantees.</span>
           </li>
           <li>
-            <a href={`${REPO}/blob/main/packages/roundtable/DESIGN.md`}>Design decisions</a>
+            <a href="/docs/design-decisions">Design decisions</a>
             <span class="desc">Why each choice went the way it did — alternatives rejected included.</span>
           </li>
           <li>
-            <a href={`${DOCS}/rlm-security-posture.md`}>RLM security posture</a>
+            <a href="/docs/rlm-security-posture">RLM security posture</a>
             <span class="desc">The rules self-modification must obey, and which are enforced.</span>
           </li>
         </ul>
@@ -318,11 +316,11 @@ ceiling 40% — build fails past it</span></pre>
         <span class="label">working on it</span>
         <ul>
           <li>
-            <a href={`${REPO}/blob/main/CONTRIBUTING.md`}>Contributing</a>
+            <a href="/docs/contributing">Contributing</a>
             <span class="desc">Issue coordination and pull request guidance.</span>
           </li>
           <li>
-            <a href={`${DOCS}/ci.md`}>CI</a>
+            <a href="/docs/ci">CI</a>
             <span class="desc">The gate that runs, what it covers, and what it deliberately does not.</span>
           </li>
           <li>
@@ -361,7 +359,7 @@ ceiling 40% — build fails past it</span></pre>
           </tr>
           <tr>
             <td class="key">contributing</td>
-            <td><a href={`${REPO}/blob/main/CONTRIBUTING.md`}>CONTRIBUTING.md</a> — read <a href={`${REPO}/blob/main/AGENTS.md`}>AGENTS.md</a> first.</td>
+            <td><a href="/docs/contributing">CONTRIBUTING.md</a> — read <a href="/docs/agents">AGENTS.md</a> first.</td>
           </tr>
           <tr>
             <td class="key">security</td>

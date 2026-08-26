@@ -1,0 +1,88 @@
+---
+// Sidebar for /docs — structure parsed from the repo's own docs/README.md
+// by scripts/sync-docs.mjs. The repo curates the index; the site obeys it.
+import index from '../data/docs-index.json';
+
+interface Props {
+  current?: string; // slug of the active page, if any
+}
+const { current } = Astro.props;
+---
+
+<div class="docsnav-wrap">
+  <input type="checkbox" id="docsnav-open" class="navcheck" />
+  <label for="docsnav-open" class="mono navlabel">/docs — menu</label>
+  <nav class="docsnav" aria-label="Documentation">
+    <a href="/docs" class:list={['home', { active: !current }]}>docs home</a>
+    {
+      index.groups.map((group) => (
+        <div class="group">
+          <span class="label gname">{group.group}</span>
+          <ul>
+            {group.items.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class:list={[{ active: item.slug === current }]}
+                  aria-current={item.slug === current ? 'page' : undefined}
+                >
+                  {item.title.replace(/`/g, '')}
+                  {!item.slug && !item.href.startsWith('/') && <span aria-hidden="true"> ↗</span>}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </nav>
+</div>
+
+<style>
+  .docsnav-wrap { min-width: 0; }
+  .navcheck { position: absolute; opacity: 0; pointer-events: none; }
+  .navlabel {
+    display: none;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--green);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .navcheck:focus-visible + .navlabel { outline: 2px solid var(--green); outline-offset: 2px; }
+  .docsnav { font-size: 13.5px; }
+  .docsnav .home {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--grey);
+    margin-bottom: 18px;
+  }
+  .docsnav .home:hover, .docsnav .home.active { color: var(--green); }
+  .group { margin-bottom: 22px; }
+  .gname { display: block; color: var(--green-dim); margin-bottom: 8px; }
+  .docsnav ul { list-style: none; margin: 0; padding: 0; }
+  .docsnav li { margin: 0; }
+  .docsnav li a {
+    display: block;
+    color: var(--grey);
+    padding: 4px 10px;
+    border-left: 1px solid var(--line);
+    line-height: 1.45;
+  }
+  .docsnav li a:hover { color: var(--white); border-left-color: var(--green-dim); }
+  .docsnav li a.active {
+    color: var(--green);
+    border-left-color: var(--green);
+    background: var(--green-tint);
+  }
+
+  @media (max-width: 960px) {
+    .navlabel { display: inline-block; }
+    .navcheck:not(:checked) ~ .docsnav { display: none; }
+    .docsnav { padding: 14px 4px 0; }
+  }
+</style>

@@ -1,0 +1,80 @@
+
+Orphus is a coding agent whose agents can hold a discussion that does not live in
+any of their context windows. Start with the first link; the rest are reference.
+
+## Start here
+
+| | |
+| --- | --- |
+| **[Getting started](/docs/getting-started)** | Clone to working fleet, in five tiers. Tier 1 needs no model and no API key. |
+| **[Troubleshooting](/docs/troubleshooting)** | The three failures that look like success, and everything else that goes wrong. |
+
+## Using it
+
+| | |
+| --- | --- |
+| **[The `roundtable` tool](roundtable-tool.md)** | Every action, parameter, and default, with the reasoning. |
+| **[Roles and the manifest](/docs/roles)** | Declaring a fleet in `orphus.roles.yaml` and turning it into launch commands. |
+| **[Memory](/docs/memory)** | The durable layer: the librarian convention, the export → ingest → query flow, and its contract. |
+| **[Fleets](/docs/fleet)** | Blueprint-driven orchestration: teams with pre-assigned skills, run by `/fleet`, authored by `/fleetsetup`. |
+| **[Live worker visibility](https://github.com/kelvincushman/orphus/blob/main/README.md#live-worker-visibility)** | The automatic Goal graph overlay and `ORPHUS HARNESS · workers live` panel for background subagents. |
+| **[Orca integration](/docs/orca-integration)** | Running a fleet across parallel git worktrees. |
+| **[Workflow playbook](/docs/workflow-playbook)** | Multi-stage workflow execution, inherited from Atomic. |
+| **[The refine loop](/docs/refine)** | `/refine` — gated, reversible self-modification: what the gate refuses, and what it does not claim. |
+| **[Execution kernels](/docs/repl)** | `repl` — values that outlive a tool call. **Not a security sandbox**, and honest about which pieces are wired. |
+| **[Browser operation](/docs/browser)** | Driving an isolated browser, and the four gates a credential passes before it reaches a page. Off by default. |
+| **[Transcription](/docs/transcribe)** | Local dictation: the worker/helper protocol, the pinned model catalog, and why it is not enabled yet. |
+| **[Terminal backend](/docs/tui-backend)** | The termDOM pilot for startup selection and the session picker. Opt-in; pi stays the default. |
+
+## Understanding it
+
+| | |
+| --- | --- |
+| **[Architecture](/docs/architecture)** | What runs where, what the bound actually guarantees, and where the trust boundary sits. |
+| **[Harness](/docs/harness)** | The capability boundary, the provider/tool session records, and `orphus inspect runtime`. |
+| **[Design decisions](/docs/design-decisions)** | Why each choice went the way it did, including the alternatives rejected. |
+| **[The self-improvement loop](/docs/self-improvement-loop)** | The design behind [refine](/docs/refine). Collect, propose, gate and apply are built; the *deliberate* stage and Dossier ingest are still intent. |
+| **[RLM security posture](/docs/rlm-security-posture)** | The rules self-modification and persistent execution sessions must obey, and which of them the runtime actually enforces. |
+
+## Working on it
+
+| | |
+| --- | --- |
+| **[AGENTS.md](/docs/agents)** | Read before contributing. Also what an agent working on this repository follows — including the minimal-change principle and the definition of done. |
+| **[CONTRIBUTING.md](/docs/contributing)** | Issue coordination and pull request guidance. |
+| **[DEV_SETUP.md](/docs/dev-setup)** | Local development, the toolchain split, and repository layout. |
+| **[CI](/docs/ci)** | The gate that runs, what it covers, and what it deliberately does not. |
+| **[Long-context baseline](/docs/long-context-baseline)** | What an oversized tool result costs the parent's context window, and the committed scorecard CI diffs against. |
+| **[SECURITY.md](/security)** | Reporting a vulnerability, and what is in scope. |
+
+## A note on the two halves
+
+Most of this repository is vendored from
+[Atomic](https://github.com/bastani-inc/atomic), itself a fork of pi. The agent
+loop, providers, tools, MCP, subagents, workflows, and the TUI all come from
+there and behave as they do upstream.
+
+What Orphus authors is `packages/roundtable/` — rooms, the budgeted digest, the
+broker, the role launcher, the memory adapter — `packages/fleet/` — the
+blueprint loader, `/fleet` and `/fleetsetup`, and the orchestration skills — and
+`packages/transcribe/`, local dictation derived from pi-transcribe. It also authors
+several subsystems *inside* the otherwise-vendored `packages/coding-agent/`:
+the injectable capability boundary and the provider/tool session records,
+`orphus inspect runtime`, browser operation, and the termDOM terminal backend.
+Add their tests, this documentation, and `.github/workflows/ci.yml`.
+
+[Architecture](/docs/architecture#where-orphus-ends-and-atomic-begins) has the
+path-by-path table, which is the one to check before assuming a file is
+upstream's.
+
+The practical consequence: a question about *rooms, digests, roles, memory,
+fleets, dictation*, or any of the `coding-agent` subsystems named above belongs
+here. A question about the agent loop, providers, tools, or the chat TUI is
+usually answered upstream, and a bug there is worth reporting to both. Note that
+"harness" is ambiguous in this repository: [harness.md](/docs/harness)
+describes Orphus's own capability boundary and session records, not the
+inherited agent machinery.
+
+The `archive/upstream/` directory holds Atomic's inherited working notes — 383
+files written for a different project. Nothing reads them, and nothing new
+should be added there.

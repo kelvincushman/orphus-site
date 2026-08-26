@@ -10,7 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "sync": "node scripts/sync-repo.mjs"
+    "sync": "node scripts/sync-repo.mjs && node scripts/sync-docs.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",

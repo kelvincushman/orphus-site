@@ -23,6 +23,8 @@ ground → `#000`).
 | Route | Contents |
 | --- | --- |
 | `/` | Landing: thesis, the context-window contract, the 32% number, tier-1 quickstart, docs index, requirements |
+| `/docs` | Docs home — `docs/README.md` rendered, sidebar built from its own four groups |
+| `/docs/<page>` | 23 documentation pages mirrored from the repo, links rewritten, edit-on-GitHub per page |
 | `/install` | What the install script does, verified: platform detection, checksum verification, `--ref` pinning |
 | `/changelog` | `RELEASE_NOTES.md`, rendered from the repo |
 | `/security` | `SECURITY.md`, rendered from the repo |
@@ -34,15 +36,21 @@ ground → `#000`).
 
 ## The repo is the source of truth
 
-Nothing under `src/content/repo/` is hand-edited. It mirrors files from
-`kelvincushman/orphus` — refresh and commit with:
+Nothing under `src/content/repo/`, `src/content/docs/`, `src/content/docs-home.md`,
+or `src/data/docs-index.json` is hand-edited. It all mirrors `kelvincushman/orphus` —
+refresh and commit with:
 
 ```bash
-npm run sync   # pulls RELEASE_NOTES.md, SECURITY.md, LICENSE + repo metadata
+npm run sync   # legals/changelog/metadata + the full docs mirror
 ```
 
-Docs links point at the repo on GitHub for now; the full docs mirror (`/docs`) is
-phase 2 of the site spec.
+The docs mirror (`scripts/sync-docs.mjs`) ingests exactly the pages `docs/README.md`
+links to — the repo curates its own index and the site obeys it. Relative links are
+rewritten to site routes where the target is mirrored (`/security`, `/legal/licence`,
+`/changelog` included) and to GitHub otherwise; links inside code blocks are left
+alone. Sidebar groups and page order come from parsing `docs/README.md`'s four group
+tables. Set `ORPHUS_LOCAL=/path/to/checkout` to sync from a local clone, or
+`ORPHUS_REF=<tag>` to pin a release.
 
 ## Develop
 

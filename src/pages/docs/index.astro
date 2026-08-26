@@ -1,0 +1,32 @@
+---
+import Base from '../../layouts/Base.astro';
+import DocsSidebar from '../../components/DocsSidebar.astro';
+import { Content as DocsHome } from '../../content/docs-home.md';
+import index from '../../data/docs-index.json';
+
+const pageCount = index.groups.reduce((n, g) => n + g.items.filter((it) => it.slug).length, 0);
+---
+
+<Base
+  title="Documentation — Orphus"
+  description="Orphus documentation, mirrored from the repository: getting started, the roundtable tool, roles, memory, architecture, and how to work on the harness itself."
+>
+  <div class="wrap docsgrid">
+    <aside class="docsside">
+      <DocsSidebar />
+    </aside>
+    <article class="docsmain prose">
+      <div class="section-head">
+        <span class="label"><span class="comment">// docs</span></span>
+        <span class="label hint">{pageCount} pages, mirrored from the repo</span>
+      </div>
+      <h1>Documentation</h1>
+      <DocsHome />
+      <p class="editline mono">
+        <a href="https://github.com/kelvincushman/orphus/blob/main/docs/README.md"
+          >edit this page on GitHub →</a
+        >
+      </p>
+    </article>
+  </div>
+</Base>

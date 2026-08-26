@@ -1,0 +1,175 @@
+{
+  "ref": "main",
+  "groups": [
+    {
+      "group": "Start here",
+      "items": [
+        {
+          "title": "Getting started",
+          "desc": "Clone to working fleet, in five tiers. Tier 1 needs no model and no API key.",
+          "href": "/docs/getting-started",
+          "slug": "getting-started"
+        },
+        {
+          "title": "Troubleshooting",
+          "desc": "The three failures that look like success, and everything else that goes wrong.",
+          "href": "/docs/troubleshooting",
+          "slug": "troubleshooting"
+        }
+      ]
+    },
+    {
+      "group": "Using it",
+      "items": [
+        {
+          "title": "The `roundtable` tool",
+          "desc": "Every action, parameter, and default, with the reasoning.",
+          "href": "/docs/roundtable-tool",
+          "slug": "roundtable-tool"
+        },
+        {
+          "title": "Roles and the manifest",
+          "desc": "Declaring a fleet in `orphus.roles.yaml` and turning it into launch commands.",
+          "href": "/docs/roles",
+          "slug": "roles"
+        },
+        {
+          "title": "Memory",
+          "desc": "The durable layer: the librarian convention, the export → ingest → query flow, and its contract.",
+          "href": "/docs/memory",
+          "slug": "memory"
+        },
+        {
+          "title": "Fleets",
+          "desc": "Blueprint-driven orchestration: teams with pre-assigned skills, run by `/fleet`, authored by `/fleetsetup`.",
+          "href": "/docs/fleet",
+          "slug": "fleet"
+        },
+        {
+          "title": "Live worker visibility",
+          "desc": "The automatic Goal graph overlay and `ORPHUS HARNESS · workers live` panel for background subagents.",
+          "href": "https://github.com/kelvincushman/orphus/blob/main/README.md#live-worker-visibility",
+          "slug": null
+        },
+        {
+          "title": "Orca integration",
+          "desc": "Running a fleet across parallel git worktrees.",
+          "href": "/docs/orca-integration",
+          "slug": "orca-integration"
+        },
+        {
+          "title": "Workflow playbook",
+          "desc": "Multi-stage workflow execution, inherited from Atomic.",
+          "href": "/docs/workflow-playbook",
+          "slug": "workflow-playbook"
+        },
+        {
+          "title": "The refine loop",
+          "desc": "`/refine` — gated, reversible self-modification: what the gate refuses, and what it does not claim.",
+          "href": "/docs/refine",
+          "slug": "refine"
+        },
+        {
+          "title": "Execution kernels",
+          "desc": "`repl` — values that outlive a tool call. **Not a security sandbox**, and honest about which pieces are wired.",
+          "href": "/docs/repl",
+          "slug": "repl"
+        },
+        {
+          "title": "Browser operation",
+          "desc": "Driving an isolated browser, and the four gates a credential passes before it reaches a page. Off by default.",
+          "href": "/docs/browser",
+          "slug": "browser"
+        },
+        {
+          "title": "Transcription",
+          "desc": "Local dictation: the worker/helper protocol, the pinned model catalog, and why it is not enabled yet.",
+          "href": "/docs/transcribe",
+          "slug": "transcribe"
+        },
+        {
+          "title": "Terminal backend",
+          "desc": "The termDOM pilot for startup selection and the session picker. Opt-in; pi stays the default.",
+          "href": "/docs/tui-backend",
+          "slug": "tui-backend"
+        }
+      ]
+    },
+    {
+      "group": "Understanding it",
+      "items": [
+        {
+          "title": "Architecture",
+          "desc": "What runs where, what the bound actually guarantees, and where the trust boundary sits.",
+          "href": "/docs/architecture",
+          "slug": "architecture"
+        },
+        {
+          "title": "Harness",
+          "desc": "The capability boundary, the provider/tool session records, and `orphus inspect runtime`.",
+          "href": "/docs/harness",
+          "slug": "harness"
+        },
+        {
+          "title": "Design decisions",
+          "desc": "Why each choice went the way it did, including the alternatives rejected.",
+          "href": "/docs/design-decisions",
+          "slug": "design-decisions"
+        },
+        {
+          "title": "The self-improvement loop",
+          "desc": "The design behind [refine](refine.md). Collect, propose, gate and apply are built; the *deliberate* stage and Dossier ingest are still intent.",
+          "href": "/docs/self-improvement-loop",
+          "slug": "self-improvement-loop"
+        },
+        {
+          "title": "RLM security posture",
+          "desc": "The rules self-modification and persistent execution sessions must obey, and which of them the runtime actually enforces.",
+          "href": "/docs/rlm-security-posture",
+          "slug": "rlm-security-posture"
+        }
+      ]
+    },
+    {
+      "group": "Working on it",
+      "items": [
+        {
+          "title": "AGENTS.md",
+          "desc": "Read before contributing. Also what an agent working on this repository follows — including the minimal-change principle and the definition of done.",
+          "href": "/docs/agents",
+          "slug": "agents"
+        },
+        {
+          "title": "CONTRIBUTING.md",
+          "desc": "Issue coordination and pull request guidance.",
+          "href": "/docs/contributing",
+          "slug": "contributing"
+        },
+        {
+          "title": "DEV_SETUP.md",
+          "desc": "Local development, the toolchain split, and repository layout.",
+          "href": "/docs/dev-setup",
+          "slug": "dev-setup"
+        },
+        {
+          "title": "CI",
+          "desc": "The gate that runs, what it covers, and what it deliberately does not.",
+          "href": "/docs/ci",
+          "slug": "ci"
+        },
+        {
+          "title": "Long-context baseline",
+          "desc": "What an oversized tool result costs the parent's context window, and the committed scorecard CI diffs against.",
+          "href": "/docs/long-context-baseline",
+          "slug": "long-context-baseline"
+        },
+        {
+          "title": "SECURITY.md",
+          "desc": "Reporting a vulnerability, and what is in scope.",
+          "href": "/security",
+          "slug": null
+        }
+      ]
+    }
+  ]
+}
