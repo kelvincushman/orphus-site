@@ -27,6 +27,8 @@ const MIRROR = {
   'docs/roles.md': 'roles',
   'docs/memory.md': 'memory',
   'packages/coding-agent/docs/fleet.md': 'fleet',
+  'packages/coding-agent/docs/subagents.md': 'subagents',
+  'packages/coding-agent/docs/skills.md': 'skills',
   'docs/orca-integration.md': 'orca-integration',
   'docs/workflow-playbook.md': 'workflow-playbook',
   'docs/refine.md': 'refine',
