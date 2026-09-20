@@ -95,7 +95,7 @@
         },
         {
           "title": "Browser operation",
-          "desc": "Driving an isolated browser, and the four gates a credential passes before it reaches a page. Off by default.",
+          "desc": "Driving an isolated browser, available by default with four gates before a credential reaches a page.",
           "href": "/docs/browser",
           "slug": "browser"
         },
