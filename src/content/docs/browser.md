@@ -2,7 +2,7 @@
 title: "Browser operation"
 description: "Driving an isolated browser, and the four gates a credential passes before it reaches a page. Off by default."
 group: "Using it"
-order: 10
+order: 13
 sourcePath: "packages/coding-agent/docs/browser.md"
 editUrl: "https://github.com/kelvincushman/orphus/blob/main/packages/coding-agent/docs/browser.md"
 ---

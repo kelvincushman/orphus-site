@@ -2,7 +2,7 @@
 title: "Orca integration"
 description: "Running a fleet across parallel git worktrees."
 group: "Using it"
-order: 6
+order: 9
 sourcePath: "docs/orca-integration.md"
 editUrl: "https://github.com/kelvincushman/orphus/blob/main/docs/orca-integration.md"
 ---

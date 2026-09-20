@@ -2,7 +2,7 @@
 title: "CONTRIBUTING.md"
 description: "Issue coordination and pull request guidance."
 group: "Working on it"
-order: 19
+order: 22
 sourcePath: "CONTRIBUTING.md"
 editUrl: "https://github.com/kelvincushman/orphus/blob/main/CONTRIBUTING.md"
 ---

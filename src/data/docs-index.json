@@ -46,6 +46,24 @@
           "slug": "fleet"
         },
         {
+          "title": "System One",
+          "desc": "The optional decision layer in front of Goal's model turns: fixed questions, calibrated-by-intent probabilities, and an abstain band that defers to the model. Off by default.",
+          "href": "/docs/systemone",
+          "slug": "systemone"
+        },
+        {
+          "title": "Subagents",
+          "desc": "Delegation inside a session: fresh, forked, or a bounded key→value `handoff`; cheapest-first routing down an agent's model ladder.",
+          "href": "/docs/subagents",
+          "slug": "subagents"
+        },
+        {
+          "title": "Skills",
+          "desc": "What ships in every session, how skills load, community packs, and the standard for writing new ones.",
+          "href": "/docs/skills",
+          "slug": "skills"
+        },
+        {
           "title": "Live worker visibility",
           "desc": "The automatic Goal graph overlay and `ORPHUS HARNESS · workers live` panel for background subagents.",
           "href": "https://github.com/kelvincushman/orphus/blob/main/README.md#live-worker-visibility",

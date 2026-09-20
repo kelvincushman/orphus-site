@@ -2,7 +2,7 @@
 title: "Workflow playbook"
 description: "Multi-stage workflow execution, inherited from Atomic."
 group: "Using it"
-order: 7
+order: 10
 sourcePath: "docs/workflow-playbook.md"
 editUrl: "https://github.com/kelvincushman/orphus/blob/main/docs/workflow-playbook.md"
 ---

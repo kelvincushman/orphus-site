@@ -2,7 +2,7 @@
 title: "RLM security posture"
 description: "The rules self-modification and persistent execution sessions must obey, and which of them the runtime actually enforces."
 group: "Understanding it"
-order: 17
+order: 20
 sourcePath: "docs/rlm-security-posture.md"
 editUrl: "https://github.com/kelvincushman/orphus/blob/main/docs/rlm-security-posture.md"
 ---

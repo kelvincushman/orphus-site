@@ -6,6 +6,14 @@
       "note": "Loaded automatically with the packages that carry them.",
       "skills": [
         {
+          "name": "memory",
+          "description": "Recall is evidence, not certainty — query the memory tool before trusting or writing, verify recalled claims against the repository, and hand what you recall to children as an asserted handoff. Use when a task needs a past decision, when a concluded room should be ingested, or when a recall comes back empty.",
+          "version": null,
+          "pkg": "@orphus/roundtable",
+          "path": "packages/roundtable/skills/memory/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/packages/roundtable/skills/memory/SKILL.md"
+        },
+        {
           "name": "roundtable",
           "description": "Patterns for multi-agent group discussion via roundtable rooms without paying full-transcript context costs.",
           "version": null,
@@ -36,6 +44,14 @@
           "pkg": "@orphus/intercom",
           "path": "packages/intercom/skills/intercom/SKILL.md",
           "url": "https://github.com/kelvincushman/orphus/blob/main/packages/intercom/skills/intercom/SKILL.md"
+        },
+        {
+          "name": "context-budget",
+          "description": "Audit what fills the context window — system prompt sections, bundled skills, agent descriptions, MCP tool schemas, and the channels that still arrive unbounded — and rank what to cut. Use when a session feels slow or shallow, before adding an MCP server or skill, or when asked how much context headroom is left.",
+          "version": null,
+          "pkg": "@orphus/subagents",
+          "path": "packages/subagents/skills/context-budget/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/packages/subagents/skills/context-budget/SKILL.md"
         },
         {
           "name": "liteparse",
@@ -70,8 +86,16 @@
           "url": "https://github.com/kelvincushman/orphus/blob/main/packages/subagents/skills/ponytail/SKILL.md"
         },
         {
+          "name": "strategic-compact",
+          "description": "Compact at a phase boundary, on purpose, after writing state down — and reach for rooms, handoff, and file-only returns before compacting at all. Use when context is filling, when a research or debugging phase has ended, or before a large fan-out.",
+          "version": null,
+          "pkg": "@orphus/subagents",
+          "path": "packages/subagents/skills/strategic-compact/SKILL.md",
+          "url": "https://github.com/kelvincushman/orphus/blob/main/packages/subagents/skills/strategic-compact/SKILL.md"
+        },
+        {
           "name": "subagent",
-          "description": "Delegate work to builtin or custom subagents with single-agent, chain, parallel, selective async, forked-context, and intercom-coordinated runs. Use for bounded specialist delegation where a single parent agent stays in control while subagents contribute locate, analyze, pattern-find, research, debug, or simplify passes.",
+          "description": "Delegate work to builtin or custom subagents with single-agent, chain, parallel, selective async, forked-context, and intercom-coordinated runs; hand a cheap child a bounded key→value handoff and route it cheapest-first. Use for bounded specialist delegation where a single parent agent stays in control while subagents contribute locate, analyze, pattern-find, research, debug, or simplify passes.",
           "version": null,
           "pkg": "@orphus/subagents",
           "path": "packages/subagents/skills/subagent/SKILL.md",

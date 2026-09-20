@@ -55,7 +55,7 @@ Only the first arrives unasked, and it carries no message bodies at all.
 
 ## Requirements
 
-- **Node.js ≥ 22.13** — installs dependencies and runs the test suites.
+- **Node.js ≥ 22.19** — installs dependencies and runs the test suites.
 - **[Bun](https://bun.sh) 1.3.14** — runs the demos, the role launcher, and the
   repository scripts. Both runtimes are needed; see the Tech Stack table in
   [`AGENTS.md`](../AGENTS.md) for which does what and why.
@@ -105,9 +105,8 @@ no room and no transcript** answers a question about what was decided.
 
 ## 2. Use Orphus as your coding agent
 
-The fastest path needs no clone at all — the release installer detects your
-platform (macOS arm64 or Linux x64 glibc today), verifies checksums, and links
-`orphus` onto your PATH:
+The fastest path on macOS arm64 or Linux x64 glibc needs no clone at all — the release
+installer verifies checksums and links `orphus` onto your PATH:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/kelvincushman/orphus/main/install.sh | sh
@@ -123,6 +122,12 @@ prerelease install tracks the newest release of any kind. `--ref` pins one
 exact tag (`install.sh --ref v0.1.0-beta.4`) — installing a prerelease that
 way puts your next `orphus update` on the prerelease channel until a stable
 lands you back.
+
+Windows x64 currently uses the checksum-verified portable
+`orphus-windows-x64.zip` from the
+[latest release](https://github.com/kelvincushman/orphus/releases/latest). Follow the
+[PowerShell verification and extraction steps](https://github.com/kelvincushman/orphus/blob/main/README.md#windows-x64) in the README.
+Managed Windows installation and in-place self-update are not yet supported.
 
 Orphus is not published to npm. To run from a checkout instead, build the
 binary:
@@ -231,6 +236,12 @@ Full reference: [`memory.md`](memory.md).
   what the broker does, and where the trust boundary sits.
 - **[`troubleshooting.md`](troubleshooting.md)** — when agents cannot see each
   other, when memory answers nothing, and other things that fail quietly.
+- **[`fleet.md`](../packages/coding-agent/docs/fleet.md)** — a whole orchestration in
+  one command: `/fleetsetup` writes a blueprint, `/fleet` runs it.
+- **[`subagents.md`](../packages/coding-agent/docs/subagents.md)** — delegating inside a
+  session: fresh, forked, or a bounded `handoff`; cheapest-first routing.
+- **[`skills.md`](../packages/coding-agent/docs/skills.md)** — what ships in every
+  session, and how to add more.
 - **[`orca-integration.md`](orca-integration.md)** — running a fleet across
   parallel git worktrees.
 - **[`../AGENTS.md`](../AGENTS.md)** — read this before contributing; it is also

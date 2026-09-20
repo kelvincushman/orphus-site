@@ -2,7 +2,7 @@
 title: "Execution kernels"
 description: "`repl` — values that outlive a tool call. **Not a security sandbox**, and honest about which pieces are wired."
 group: "Using it"
-order: 9
+order: 12
 sourcePath: "docs/repl.md"
 editUrl: "https://github.com/kelvincushman/orphus/blob/main/docs/repl.md"
 ---

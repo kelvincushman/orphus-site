@@ -2,7 +2,7 @@
 title: "The refine loop"
 description: "`/refine` — gated, reversible self-modification: what the gate refuses, and what it does not claim."
 group: "Using it"
-order: 8
+order: 11
 sourcePath: "docs/refine.md"
 editUrl: "https://github.com/kelvincushman/orphus/blob/main/docs/refine.md"
 ---

@@ -2,7 +2,7 @@
 title: "Terminal backend"
 description: "The termDOM pilot for startup selection and the session picker. Opt-in; pi stays the default."
 group: "Using it"
-order: 12
+order: 15
 sourcePath: "packages/coding-agent/docs/tui-backend.md"
 editUrl: "https://github.com/kelvincushman/orphus/blob/main/packages/coding-agent/docs/tui-backend.md"
 ---

@@ -2,7 +2,7 @@
 title: "Harness"
 description: "The capability boundary, the provider/tool session records, and `orphus inspect runtime`."
 group: "Understanding it"
-order: 14
+order: 17
 sourcePath: "packages/coding-agent/docs/harness.md"
 editUrl: "https://github.com/kelvincushman/orphus/blob/main/packages/coding-agent/docs/harness.md"
 ---

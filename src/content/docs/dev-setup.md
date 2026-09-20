@@ -2,7 +2,7 @@
 title: "DEV_SETUP.md"
 description: "Local development, the toolchain split, and repository layout."
 group: "Working on it"
-order: 20
+order: 23
 sourcePath: "DEV_SETUP.md"
 editUrl: "https://github.com/kelvincushman/orphus/blob/main/DEV_SETUP.md"
 ---

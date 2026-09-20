@@ -2,7 +2,7 @@
 title: "The self-improvement loop"
 description: "The design behind [refine](refine.md). Collect, propose, gate and apply are built; the *deliberate* stage and Dossier ingest are still intent."
 group: "Understanding it"
-order: 16
+order: 19
 sourcePath: "docs/self-improvement-loop.md"
 editUrl: "https://github.com/kelvincushman/orphus/blob/main/docs/self-improvement-loop.md"
 ---

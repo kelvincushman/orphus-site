@@ -2,7 +2,7 @@
 title: "Long-context baseline"
 description: "What an oversized tool result costs the parent's context window, and the committed scorecard CI diffs against."
 group: "Working on it"
-order: 22
+order: 25
 sourcePath: "evals/longcontext/README.md"
 editUrl: "https://github.com/kelvincushman/orphus/blob/main/evals/longcontext/README.md"
 ---

@@ -2,7 +2,7 @@
 title: "Design decisions"
 description: "Why each choice went the way it did, including the alternatives rejected."
 group: "Understanding it"
-order: 15
+order: 18
 sourcePath: "packages/roundtable/DESIGN.md"
 editUrl: "https://github.com/kelvincushman/orphus/blob/main/packages/roundtable/DESIGN.md"
 ---

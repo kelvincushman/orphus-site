@@ -27,6 +27,9 @@ const MIRROR = {
   'docs/roles.md': 'roles',
   'docs/memory.md': 'memory',
   'packages/coding-agent/docs/fleet.md': 'fleet',
+  'packages/coding-agent/docs/systemone.md': 'systemone',
+  'packages/coding-agent/docs/subagents.md': 'subagents',
+  'packages/coding-agent/docs/skills.md': 'skills',
   'docs/orca-integration.md': 'orca-integration',
   'docs/workflow-playbook.md': 'workflow-playbook',
   'docs/refine.md': 'refine',
@@ -161,3 +164,20 @@ console.log('synced docs/README.md → src/content/docs-home.md');
 
 await writeFile(OUT_INDEX, JSON.stringify({ ref: REF, groups }, null, 2) + '\n');
 console.log(`wrote src/data/docs-index.json (${groups.length} groups, ${flat.length} mirrored pages)`);
+
+// An indexed row with no slug resolved to GitHub instead of a site route, which
+// means MIRROR is missing it. That is how the System One page stayed off the
+// site after the repo had already indexed it, so say it out loud rather than
+// letting the row quietly leave the site.
+// A row with no slug either resolved through SPECIAL to a site route of its own
+// (`/security`) or left the site entirely. Only the second kind is a problem,
+// and only when it points at a documentation page — a link to a README anchor
+// is meant to go to GitHub.
+const unmirrored = groups.flatMap((g) =>
+  g.items.filter((it) => !it.slug && /^https?:/.test(it.href) && it.href.includes('/docs/')),
+);
+if (unmirrored.length > 0) {
+  console.warn(`\n${unmirrored.length} indexed page(s) are NOT mirrored and link to GitHub:`);
+  for (const it of unmirrored) console.warn(`  - ${it.title} → ${it.href}`);
+  console.warn('Add them to MIRROR in this script if they should be site pages.\n');
+}

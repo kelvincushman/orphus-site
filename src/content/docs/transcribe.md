@@ -2,7 +2,7 @@
 title: "Transcription"
 description: "Local dictation: the worker/helper protocol, the pinned model catalog, and why it is not enabled yet."
 group: "Using it"
-order: 11
+order: 14
 sourcePath: "packages/coding-agent/docs/transcribe.md"
 editUrl: "https://github.com/kelvincushman/orphus/blob/main/packages/coding-agent/docs/transcribe.md"
 ---
