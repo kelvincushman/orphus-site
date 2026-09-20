@@ -17,7 +17,7 @@ any of their context windows. Start with the first link; the rest are reference.
 | **[Roles and the manifest](/docs/roles)** | Declaring a fleet in `orphus.roles.yaml` and turning it into launch commands. |
 | **[Memory](/docs/memory)** | The durable layer: the librarian convention, the export → ingest → query flow, and its contract. |
 | **[Fleets](/docs/fleet)** | Blueprint-driven orchestration: teams with pre-assigned skills, run by `/fleet`, authored by `/fleetsetup`. |
-| **[System One](/docs/systemone)** | The optional decision layer in front of Goal's model turns: fixed questions, calibrated-by-intent probabilities, and an abstain band that defers to the model. Off by default. |
+| **[System One](/docs/systemone)** | The optional decision layer in front of Goal's model turns: fixed questions, probabilities over the answers you supply, and an abstain band that defers to the model whenever confidence falls short. Off by default, and not yet calibrated. |
 | **[Subagents](/docs/subagents)** | Delegation inside a session: fresh, forked, or a bounded key→value `handoff`; cheapest-first routing down an agent's model ladder. |
 | **[Skills](/docs/skills)** | What ships in every session, how skills load, community packs, and the standard for writing new ones. |
 | **[Live worker visibility](https://github.com/kelvincushman/orphus/blob/main/README.md#live-worker-visibility)** | The automatic Goal graph overlay and `ORPHUS HARNESS · workers live` panel for background subagents. |

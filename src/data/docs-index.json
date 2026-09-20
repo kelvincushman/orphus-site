@@ -47,7 +47,7 @@
         },
         {
           "title": "System One",
-          "desc": "The optional decision layer in front of Goal's model turns: fixed questions, calibrated-by-intent probabilities, and an abstain band that defers to the model. Off by default.",
+          "desc": "The optional decision layer in front of Goal's model turns: fixed questions, probabilities over the answers you supply, and an abstain band that defers to the model whenever confidence falls short. Off by default, and not yet calibrated.",
           "href": "/docs/systemone",
           "slug": "systemone"
         },
