@@ -1,7 +1,7 @@
 {
   "stars": 4,
-  "syncedAt": "2026-09-21T05:03:24.441Z",
+  "syncedAt": "2026-09-21T08:13:38.242Z",
   "ref": "main",
-  "latestRelease": "v2.3.0",
-  "releaseHeadline": "This release adds a decision layer that answers Goal's cheap questions before\nthe model turn they would otherwise cost — and defers to the model whenever it\nis not sure."
+  "latestRelease": "v2.3.1",
+  "releaseHeadline": "One fix, for a bug that has been in every Linux release since the archives\nbegan: the `linux-x64` build could not start on any CPU older than 2013."
 }
