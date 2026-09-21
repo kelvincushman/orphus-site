@@ -1,7 +1,7 @@
 {
   "stars": 4,
-  "syncedAt": "2026-09-20T16:14:57.047Z",
+  "syncedAt": "2026-09-21T05:03:24.441Z",
   "ref": "main",
-  "latestRelease": "v2.1.2",
-  "releaseHeadline": "This release adds the first normal Orphus package for Windows x64."
+  "latestRelease": "v2.3.0",
+  "releaseHeadline": "This release adds a decision layer that answers Goal's cheap questions before\nthe model turn they would otherwise cost — and defers to the model whenever it\nis not sure."
 }
