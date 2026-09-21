@@ -89,6 +89,36 @@ jobs:
               echo "Set both and re-run this workflow — see the header of \`.github/workflows/deploy.yml\`."
             } >> "$GITHUB_STEP_SUMMARY"
           else
+            # A secret pasted into a terminal can arrive wrapped in ANSI escape
+            # sequences: bash re-enables bracketed paste on every prompt, and both
+            # `read -rs` and `gh secret set` capture the markers along with the
+            # value. The bytes are invisible everywhere — the dashboard masks the
+            # secret, and Cloudflare answers with `Invalid format for Authorization
+            # header [code: 6111]`, which reads like a permissions problem and is
+            # not. That cost three deploys once; it should cost nobody a fourth.
+            # Strip every legal character and see what is left. Unlike `grep -E`,
+            # which matches line by line and would wave through a trailing
+            # newline, this sees the whole value — and a newline in an
+            # Authorization header is exactly as fatal as an escape byte.
+            if [ -n "${TOKEN//[A-Za-z0-9_-]/}" ]; then
+              echo "present=false" >> "$GITHUB_OUTPUT"
+              {
+                echo "### CLOUDFLARE_API_TOKEN contains characters a token cannot contain"
+                echo
+                echo "Expected only \`A-Z a-z 0-9 _ -\`. Almost always terminal escape"
+                echo "sequences captured while pasting, not a wrong or expired token."
+                echo
+                echo "Re-set it without a terminal in the path:"
+                echo
+                echo '```sh'
+                echo "printf '%s' '<token>' > /tmp/cf.tok    # or write it with an editor"
+                echo "gh secret set CLOUDFLARE_API_TOKEN --repo ${{ github.repository }} < /tmp/cf.tok"
+                echo "rm -f /tmp/cf.tok"
+                echo '```'
+              } >> "$GITHUB_STEP_SUMMARY"
+              echo "::error::CLOUDFLARE_API_TOKEN is malformed — see the job summary." >&2
+              exit 1
+            fi
             echo "present=true" >> "$GITHUB_OUTPUT"
           fi
 
