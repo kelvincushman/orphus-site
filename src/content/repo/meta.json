@@ -1,7 +1,7 @@
 {
   "stars": 4,
-  "syncedAt": "2026-09-21T08:13:38.242Z",
+  "syncedAt": "2026-10-01T08:36:52.244Z",
   "ref": "main",
   "latestRelease": "v2.3.1",
-  "releaseHeadline": "One fix, for a bug that has been in every Linux release since the archives\nbegan: the `linux-x64` build could not start on any CPU older than 2013."
+  "releaseHeadline": "One fix, for a bug that has been in every Linux release since the archives began: the linux-x64 build could not start on any CPU older than 2013."
 }

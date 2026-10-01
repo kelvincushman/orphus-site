@@ -43,7 +43,11 @@ function readRelease(markdown) {
   const headline = markdown
     .split(/\n{2,}/u)
     .map((block) => block.trim())
-    .find((block) => block.length > 0 && !block.startsWith('#'));
+    .find((block) => block.length > 0 && !block.startsWith('#'))
+    // The banner interpolates this as plain text, so a hard-wrapped paragraph
+    // and its inline `code` spans would both show through literally.
+    ?.replace(/`/gu, '')
+    .replace(/\s+/gu, ' ');
   return { version, headline };
 }
 
